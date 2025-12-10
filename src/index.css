@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #0a0a0a;
+  --accent: #10b981;
+}
+
+body {
+  background-color: var(--bg-dark);
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-serif-italic {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+}
+
+.grid-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 200px 100px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+/* Beam Animation */
+.beam-path {
+  stroke-dasharray: 20, 400;
+  stroke-dashoffset: 420;
+  animation: beam 3s linear infinite;
+}
+
+.beam-path-delay-1 { animation-delay: 0s; }
+.beam-path-delay-2 { animation-delay: 1.2s; }
+.beam-path-delay-3 { animation-delay: 0.6s; }
+
+@keyframes beam {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Reveal Animations */
+@keyframes fadeInUpBlur {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  animation: fadeInUpBlur 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Custom Scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Selection */
+::selection {
+  background-color: rgba(6, 78, 59, 1);
+  color: rgb(236, 253, 245);
+}
+
+/* Falling particles animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
