@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, TrendingUp, Zap, MessageSquare, BarChart3, Shield } from 'lucide-react'
 import { Button } from '../components/ui/Button'
+import { ScrollToTop } from '../components/ui/ScrollToTop'
 import { FallingParticles } from '../components/landing/FallingParticles'
 import { TradingChart } from '../components/landing/TradingChart'
 
@@ -38,12 +39,16 @@ const LandingPage: React.FC = () => {
             <a href="#how-it-works" className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors duration-200">
               How It Works
             </a>
+            <Link to="/download" className="bg-white text-black px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 hover:bg-gray-200 transition-colors shadow-lg shadow-emerald-500/10">
+              Download
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
 
-          <Link to="/login" className="bg-white text-black px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 hover:bg-gray-200 transition-colors shadow-lg shadow-emerald-500/10">
+          {/* <Link to="/login" className="bg-white text-black px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 hover:bg-gray-200 transition-colors shadow-lg shadow-emerald-500/10">
             Login
             <ArrowRight className="w-3 h-3" />
-          </Link>
+          </Link> */}
         </div>
       </nav>
 
@@ -77,7 +82,7 @@ const LandingPage: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link to="/signup">
+                <Link to="/tutorial">
                   <Button size="lg" className="w-full sm:w-auto">
                     Install Extension
                   </Button>
@@ -254,7 +259,7 @@ const LandingPage: React.FC = () => {
             Join thousands of traders syncing their signals with MEI
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup">
+            <Link to="/tutorial">
               <Button size="lg">Install Extension</Button>
             </Link>
             <Link to="/login">
@@ -263,6 +268,9 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   )
 }
