@@ -40,14 +40,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(false)
   }
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, _password: string) => {
     // Mock: Login
     const mockToken = 'mock-token-' + Date.now()
     localStorage.setItem('token', mockToken)
     setUser({ id: '1', email, name: 'User' })
   }
 
-  const signup = async (name: string, email: string, password: string) => {
+  const signup = async (name: string, email: string, _password: string) => {
     // Mock: Signup
     const mockToken = 'mock-token-' + Date.now()
     localStorage.setItem('token', mockToken)
