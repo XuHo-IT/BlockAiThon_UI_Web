@@ -87,11 +87,11 @@ const LandingPage: React.FC = () => {
                     Install Extension
                   </Button>
                 </Link>
-                <Link to="/login">
+                {/* <Link to="/login">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto">
                     View Dashboard
                   </Button>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
