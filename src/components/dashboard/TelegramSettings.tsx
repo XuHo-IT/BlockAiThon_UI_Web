@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { MessageSquare, Send, ToggleLeft, ToggleRight } from 'lucide-react'
-import { api } from '../../services/api'
 
 export const TelegramSettings: React.FC = () => {
   const [chatId, setChatId] = useState('')
@@ -11,62 +10,36 @@ export const TelegramSettings: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
 
-  useEffect(() => {
-    fetchSettings()
-  }, [])
-
-  const fetchSettings = async () => {
-    try {
-      const response = await api.getTelegramAccount()
-      setChatId(response.data?.chatId || '')
-      setIsEnabled(response.data?.enabled || false)
-    } catch (error) {
-      console.error('Failed to fetch Telegram settings:', error)
-    }
-  }
-
-  const handleSave = async () => {
+  const handleSave = () => {
     setIsLoading(true)
-    try {
-      await api.updateTelegramAccount(chatId)
+    // Mock: Save settings
+    setTimeout(() => {
       setMessage('Telegram account updated successfully!')
       setTimeout(() => setMessage(''), 3000)
-    } catch (error: any) {
-      setMessage(error.message || 'Failed to update Telegram account')
-      setTimeout(() => setMessage(''), 3000)
-    } finally {
       setIsLoading(false)
-    }
+    }, 500)
   }
 
-  const handleTestMessage = async () => {
+  const handleTestMessage = () => {
     setIsLoading(true)
-    try {
-      await api.testTelegramMessage()
+    // Mock: Send test message
+    setTimeout(() => {
       setMessage('Test message sent! Check your Telegram.')
       setTimeout(() => setMessage(''), 3000)
-    } catch (error: any) {
-      setMessage(error.message || 'Failed to send test message')
-      setTimeout(() => setMessage(''), 3000)
-    } finally {
       setIsLoading(false)
-    }
+    }, 500)
   }
 
-  const handleToggle = async () => {
+  const handleToggle = () => {
     const newState = !isEnabled
     setIsLoading(true)
-    try {
-      await api.toggleTelegram(newState)
+    // Mock: Toggle Telegram
+    setTimeout(() => {
       setIsEnabled(newState)
       setMessage(`Telegram ${newState ? 'enabled' : 'disabled'}`)
       setTimeout(() => setMessage(''), 3000)
-    } catch (error: any) {
-      setMessage(error.message || 'Failed to toggle Telegram')
-      setTimeout(() => setMessage(''), 3000)
-    } finally {
       setIsLoading(false)
-    }
+    }, 500)
   }
 
   return (

@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { api } from '../services/api'
 
 interface User {
   id: string
@@ -32,27 +31,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [])
 
-  const fetchProfile = async () => {
-    try {
-      const profile = await api.getProfile()
-      setUser(profile)
-    } catch (error) {
-      localStorage.removeItem('token')
-    } finally {
-      setIsLoading(false)
+  const fetchProfile = () => {
+    // Mock: Check if user is logged in
+    const token = localStorage.getItem('token')
+    if (token) {
+      setUser({ id: '1', email: 'user@example.com', name: 'User' })
     }
+    setIsLoading(false)
   }
 
   const login = async (email: string, password: string) => {
-    const response = await api.login(email, password)
-    localStorage.setItem('token', response.token)
-    setUser(response.user)
+    // Mock: Login
+    const mockToken = 'mock-token-' + Date.now()
+    localStorage.setItem('token', mockToken)
+    setUser({ id: '1', email, name: 'User' })
   }
 
   const signup = async (name: string, email: string, password: string) => {
-    const response = await api.signup(name, email, password)
-    localStorage.setItem('token', response.token)
-    setUser(response.user)
+    // Mock: Signup
+    const mockToken = 'mock-token-' + Date.now()
+    localStorage.setItem('token', mockToken)
+    setUser({ id: '1', email, name })
   }
 
   const logout = () => {

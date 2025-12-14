@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card } from '../ui/Card'
 import { FileText, CheckCircle, XCircle, Info } from 'lucide-react'
-import { api } from '../../services/api'
 
 interface Log {
   id: string
@@ -18,37 +17,30 @@ export const SyncLogs: React.FC = () => {
     fetchLogs()
   }, [])
 
-  const fetchLogs = async () => {
+  const fetchLogs = () => {
     setIsLoading(true)
-    try {
-      const response = await api.getSyncLogs()
-      setLogs(response.data || [])
-    } catch (error) {
-      console.error('Failed to fetch logs:', error)
-      // Mock data for demo
-      setLogs([
-        {
-          id: '1',
-          message: 'Successfully synced BTC/USDT order to Binance',
-          type: 'SUCCESS',
-          timestamp: new Date().toISOString(),
-        },
-        {
-          id: '2',
-          message: 'Failed to sync ETH/USDT order: Connection timeout',
-          type: 'ERROR',
-          timestamp: new Date().toISOString(),
-        },
-        {
-          id: '3',
-          message: 'Telegram notification sent for BTC/USDT',
-          type: 'INFO',
-          timestamp: new Date().toISOString(),
-        },
-      ])
-    } finally {
-      setIsLoading(false)
-    }
+    // Mock data for demo
+    setLogs([
+      {
+        id: '1',
+        message: 'Successfully synced BTC/USDT order to Binance',
+        type: 'SUCCESS',
+        timestamp: new Date().toISOString(),
+      },
+      {
+        id: '2',
+        message: 'Failed to sync ETH/USDT order: Connection timeout',
+        type: 'ERROR',
+        timestamp: new Date().toISOString(),
+      },
+      {
+        id: '3',
+        message: 'Telegram notification sent for BTC/USDT',
+        type: 'INFO',
+        timestamp: new Date().toISOString(),
+      },
+    ])
+    setIsLoading(false)
   }
 
   const getLogIcon = (type: string) => {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card } from '../ui/Card'
 import { TrendingUp, MessageSquare, BarChart3, Activity } from 'lucide-react'
-import { api } from '../../services/api'
 
 export const StatsCards: React.FC = () => {
   const [stats, setStats] = useState({

@@ -1,10 +1,10 @@
 import React from 'react'
 
 interface AnimatedCircleProps {
-  position: 'left' | 'right'
+  position?: 'left' | 'right'
 }
 
-export const AnimatedCircle: React.FC<AnimatedCircleProps> = ({ position }) => {
+export const AnimatedCircle: React.FC<AnimatedCircleProps> = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="relative w-[400px] h-[400px] md:w-[500px] md:h-[500px]">

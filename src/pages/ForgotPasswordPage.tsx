@@ -4,7 +4,6 @@ import { Input } from '../components/ui/Input'
 import { Button } from '../components/ui/Button'
 import { Card } from '../components/ui/Card'
 import { BackgroundEffects } from '../components/auth/BackgroundEffects'
-import { api } from '../services/api'
 
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -12,20 +11,17 @@ const ForgotPasswordPage: React.FC = () => {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setMessage('')
     setIsLoading(true)
 
-    try {
-      await api.forgotPassword(email)
+    // Mock: Send reset email
+    setTimeout(() => {
       setMessage('Password reset instructions have been sent to your email.')
-    } catch (err: any) {
-      setError(err.message || 'Failed to send reset email. Please try again.')
-    } finally {
       setIsLoading(false)
-    }
+    }, 1000)
   }
 
   return (

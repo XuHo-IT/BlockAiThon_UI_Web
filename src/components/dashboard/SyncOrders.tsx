@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card } from '../ui/Card'
 import { RefreshCw, CheckCircle, XCircle, Clock } from 'lucide-react'
-import { api } from '../../services/api'
 
 interface Order {
   id: string
@@ -21,37 +20,30 @@ export const SyncOrders: React.FC = () => {
     fetchOrders()
   }, [])
 
-  const fetchOrders = async () => {
+  const fetchOrders = () => {
     setIsLoading(true)
-    try {
-      const response = await api.getSyncOrders()
-      setOrders(response.data || [])
-    } catch (error) {
-      console.error('Failed to fetch orders:', error)
-      // Mock data for demo
-      setOrders([
-        {
-          id: '1',
-          symbol: 'BTC/USDT',
-          side: 'BUY',
-          price: '43250.00',
-          quantity: '0.1',
-          status: 'SENT',
-          timestamp: new Date().toISOString(),
-        },
-        {
-          id: '2',
-          symbol: 'ETH/USDT',
-          side: 'SELL',
-          price: '2650.00',
-          quantity: '2.5',
-          status: 'PENDING',
-          timestamp: new Date().toISOString(),
-        },
-      ])
-    } finally {
-      setIsLoading(false)
-    }
+    // Mock data for demo
+    setOrders([
+      {
+        id: '1',
+        symbol: 'BTC/USDT',
+        side: 'BUY',
+        price: '43250.00',
+        quantity: '0.1',
+        status: 'SENT',
+        timestamp: new Date().toISOString(),
+      },
+      {
+        id: '2',
+        symbol: 'ETH/USDT',
+        side: 'SELL',
+        price: '2650.00',
+        quantity: '2.5',
+        status: 'PENDING',
+        timestamp: new Date().toISOString(),
+      },
+    ])
+    setIsLoading(false)
   }
 
   const getStatusIcon = (status: string) => {

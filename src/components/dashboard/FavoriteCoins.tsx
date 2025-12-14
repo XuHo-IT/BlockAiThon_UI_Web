@@ -3,7 +3,6 @@ import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Plus, X } from 'lucide-react'
-import { api } from '../../services/api'
 
 interface Coin {
   id: string
@@ -20,44 +19,33 @@ export const FavoriteCoins: React.FC = () => {
     fetchCoins()
   }, [])
 
-  const fetchCoins = async () => {
-    try {
-      const response = await api.getFavoriteCoins()
-      setCoins(response.data || [])
-    } catch (error) {
-      console.error('Failed to fetch coins:', error)
-      // Mock data for demo
-      setCoins([
-        { id: '1', symbol: 'BTC', name: 'Bitcoin' },
-        { id: '2', symbol: 'ETH', name: 'Ethereum' },
-        { id: '3', symbol: 'BNB', name: 'Binance Coin' },
-      ])
-    }
+  const fetchCoins = () => {
+    // Mock data for demo
+    setCoins([
+      { id: '1', symbol: 'BTC', name: 'Bitcoin' },
+      { id: '2', symbol: 'ETH', name: 'Ethereum' },
+      { id: '3', symbol: 'BNB', name: 'Binance Coin' },
+    ])
   }
 
-  const handleAddCoin = async (e: React.FormEvent) => {
+  const handleAddCoin = (e: React.FormEvent) => {
     e.preventDefault()
     if (!newCoin.trim()) return
 
     setIsLoading(true)
-    try {
-      await api.addFavoriteCoin(newCoin.toUpperCase())
-      setNewCoin('')
-      fetchCoins()
-    } catch (error: any) {
-      alert(error.message || 'Failed to add coin')
-    } finally {
-      setIsLoading(false)
+    // Mock: Add coin to list
+    const newCoinData = {
+      id: Date.now().toString(),
+      symbol: newCoin.toUpperCase(),
+      name: newCoin.toUpperCase(),
     }
+    setCoins([...coins, newCoinData])
+    setNewCoin('')
+    setIsLoading(false)
   }
 
-  const handleRemoveCoin = async (coinId: string) => {
-    try {
-      await api.removeFavoriteCoin(coinId)
-      fetchCoins()
-    } catch (error: any) {
-      alert(error.message || 'Failed to remove coin')
-    }
+  const handleRemoveCoin = (coinId: string) => {
+    setCoins(coins.filter(coin => coin.id !== coinId))
   }
 
   return (
