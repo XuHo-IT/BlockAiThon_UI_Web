@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, TrendingUp, Zap, MessageSquare, BarChart3, Shield } from 'lucide-react'
-import { Button } from '../components/ui/Button'
 import { ScrollToTop } from '../components/ui/ScrollToTop'
 import { FallingParticles } from '../components/landing/FallingParticles'
 import { TradingChart } from '../components/landing/TradingChart'
 
 const LandingPage: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <div className="min-h-screen bg-background-dark text-white relative overflow-hidden">
       {/* Background Effects with Green Trading Theme */}
@@ -25,7 +28,13 @@ const LandingPage: React.FC = () => {
       {/* Navigation */}
       <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
         <div className="bg-gray-950/80 backdrop-blur-md border border-white/10 rounded-full pl-2 pr-2 py-1.5 flex items-center gap-6 shadow-2xl shadow-black/50">
-          <Link to="/" className="flex items-center gap-2 px-3 group">
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 px-3 group"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          >
             <div className="w-5 h-5 bg-gradient-to-tr from-emerald-600 to-green-400 rounded-md flex items-center justify-center relative overflow-hidden shadow-inner">
               <div className="absolute inset-0 bg-white/20 skew-x-12 -translate-x-4 group-hover:translate-x-4 transition-transform duration-500"></div>
             </div>
@@ -39,9 +48,9 @@ const LandingPage: React.FC = () => {
             <a href="#how-it-works" className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors duration-200">
               How It Works
             </a>
-            <Link to="/download" className="bg-white text-black px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 hover:bg-gray-200 transition-colors shadow-lg shadow-emerald-500/10">
+            <Link to="/download" className="bg-gradient-to-r from-emerald-500 to-green-500 text-white px-5 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:from-emerald-400 hover:to-green-400 transition-all shadow-lg shadow-emerald-500/50 hover:shadow-emerald-500/70 hover:scale-105 relative z-10 cursor-pointer border border-emerald-400/50 animate-pulse">
               Download
-              <ArrowRight className="w-3 h-3" />
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -53,7 +62,7 @@ const LandingPage: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 pt-32 pb-16">
+      <main className="relative z-10 pt-24 pb-16">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column */}
@@ -82,11 +91,6 @@ const LandingPage: React.FC = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link to="/tutorial">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Install Extension
-                  </Button>
-                </Link>
                 {/* <Link to="/login">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto">
                     View Dashboard
@@ -259,12 +263,9 @@ const LandingPage: React.FC = () => {
             Join thousands of traders syncing their signals with MEI
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/tutorial">
-              <Button size="lg">Install Extension</Button>
-            </Link>
-            <Link to="/login">
+            {/* <Link to="/login">
               <Button variant="outline" size="lg">Login to Dashboard</Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

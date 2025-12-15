@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Download, FileArchive, Upload, Puzzle, BarChart3, ExternalLink, Key, CheckCircle2 } from 'lucide-react'
 import { Button } from '../components/ui/Button'
@@ -6,6 +6,10 @@ import { ScrollToTop } from '../components/ui/ScrollToTop'
 
 const DownloadPage: React.FC = () => {
   const downloadLink = "https://drive.google.com/uc?export=download&id=1qelkV1VXL8PlFopIlqjlxsZheKVKx9_I"
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const steps = [
     {
@@ -183,14 +187,20 @@ const DownloadPage: React.FC = () => {
       {/* Navigation */}
       <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
         <div className="bg-gray-950/80 backdrop-blur-md border border-white/10 rounded-full pl-2 pr-2 py-1.5 flex items-center gap-6 shadow-2xl shadow-black/50">
-          <Link to="/" className="flex items-center gap-2 px-3 group">
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 px-3 group"
+          >
             <div className="w-5 h-5 bg-gradient-to-tr from-emerald-600 to-green-400 rounded-md flex items-center justify-center relative overflow-hidden shadow-inner">
               <div className="absolute inset-0 bg-white/20 skew-x-12 -translate-x-4 group-hover:translate-x-4 transition-transform duration-500"></div>
             </div>
             <span className="text-sm font-semibold text-white tracking-tight">MEI</span>
           </Link>
 
-          <Link to="/" className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors duration-200">
+          <Link 
+            to="/" 
+            className="px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors duration-200"
+          >
             Home
           </Link>
         </div>
